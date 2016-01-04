@@ -64,8 +64,8 @@ var rsvpCrawl = function(req, res) {
     }
       record.members.push(req.user._id);
       record.save();
-      res.send(record);
-      console.log(record);
+      res.json(record);
+
   });
 }
 

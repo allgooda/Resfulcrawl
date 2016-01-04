@@ -16,6 +16,15 @@ var editTimeUpdate = function(crawlId, edits) {
     });
 }
 
+var updateRSVP = function() {
+
+// render template
+
+
+// hook up event listeners
+
+};
+
 var showCrawl = function(crawlId) {
 
   // get the clicked crawl's id
@@ -41,7 +50,11 @@ var showCrawl = function(crawlId) {
           $showbody.html($showHTML);
 
           $('#rsvp').on('click', function(){
+            map = null;
+            localStorage.clear();
+            debugger;
             addRsvp(crawlId, $currentUser);
+            // $('#crawl-members').append("<img class='crawl-member-thumbs' src='<%= users[i].prof_picture %> height='100' width='86.5'>");
           });
 
           // click event for edit button on show page to append edit fields
@@ -121,38 +134,42 @@ $(document).ready(function () {
 // function makes ajax call to acquire lat, lng by addresses, then place markers for all addresses, then extend map bound to include all markers
 function initMap() {
     //Marker labeling implmentation
-  map = null;
+
   var labels = '123456789';
   var labelIndex = 0;
 
   var bounds = new google.maps.LatLngBounds();
   //ajax call to google api for geocoding
-  for (var x = 0; x < addresses.length; x++) {
-    $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address='+addresses[x]+'&sensor=false', null, function (data) {
-      var p = data.results[0].geometry.location;
-      var latlng = new google.maps.LatLng(p.lat, p.lng);
 
-      var myOptions = {
-          zoom: 8,
-          tilt: 45,
-          center: data.results[0].geometry.location,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-      }
 
-      //initialize map if map is null
-      if (!map) map = new google.maps.Map(document.getElementById("map"), myOptions);
-      var marker = new google.maps.Marker({
-        position: latlng,
-        map: map,
-        animation: google.maps.Animation.DROP,
-        label: labels[labelIndex++ % labels.length]
-      });
-      //extend the bounds to include each marker's position
-      bounds.extend(marker.position);
-      //now fit the map to the newly inclusive bounds
-      map.fitBounds(bounds);
-    }); //getJSON
-  } //for loop
+    for (var x = 0; x < addresses.length; x++) {
+
+      $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address='+addresses[x]+'&sensor=false', null, function (data) {
+        var p = data.results[0].geometry.location;
+        var latlng = new google.maps.LatLng(p.lat, p.lng);
+        var myOptions = {
+            zoom: 8,
+            tilt: 45,
+            center: data.results[0].geometry.location,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        //initialize map if map is null
+        if (!map) map = new google.maps.Map(document.getElementById("map"), myOptions);
+        marker = 0;
+        var marker = new google.maps.Marker({
+          position: latlng,
+          map: map,
+          animation: google.maps.Animation.DROP,
+          label: labels[labelIndex++ % labels.length]
+        });
+        //extend the bounds to include each marker's position
+        bounds.extend(marker.position);
+        //now fit the map to the newly inclusive bounds
+        map.fitBounds(bounds);
+      }); //getJSON
+
+    } //for loop
 
 }
 
