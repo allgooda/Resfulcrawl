@@ -52,8 +52,6 @@ Behind every successful project there are countless hours dedicated towards plan
 
 
 * Visit our [slides.com](http://goo.gl/kQ1zjY) to see the project presentation we created on-deck. 
-* See our final presentation [here](http://slides.com/sebastiansalazar/resful-crawl-presentation-1#/).
-* Visit our [moqups.com](https://app.moqups.com/pujoey@gmail.com/5jktYQOpyt/edit): to see the compelling wireframes we created.
 * Visit our [trello.com](https://trello.com/b/SMSwN4DV/five-guys) to see how we organized, planned and communicated our goals, our milestones and our issues.
 * Daily [stand up meetings](https://en.wikipedia.org/wiki/Stand-up_meeting) to communicate blockers, work-in-progress and up-coming tasks.
 
@@ -126,13 +124,19 @@ Below is a list of the current actions (also known as user stories, behaviors or
 
 Below is a list of the nice-to-have features (created as user stories) that we will have for our second version:
 
-1. As a user, I should be able to delete people from my food crawl.
 - As a user, I should be able to join a crawl that is in-progress.
 - As a user, when a food crawl is over, the crawl should become inactive.
 - As a user, I should be able to delete people from my food crawl.
 - As a user, I should be able to join food crawls that are in-progress.
 - A food crawl should become inactive (automatically) when completed.
-- A user that joins a crawl should be able to see the complete crawl information.
+- As a user, I should see the dates on the main page for the crawls.
+- As a user, I should be able to RSVP for a crawl.
+- As a user I should be able to see the closest food crawls based on my location (SPA implementation of search page)
+- As user that joins a crawl should be able to see the complete crawl information.
+- As a user, I should be able to see prepopulated fields when I add a restaurant to a crawl
+- As a user, I should be see a prompt asking me if I am sure I want to delete a crawl
+- As a user, I should be able to do a search for crawls near a location I specified
+- As a user, the geolocation for a crawl should be the avg of lat and lng of all the restaurants
 
 
 ### Project scope
