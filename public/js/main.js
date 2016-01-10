@@ -16,14 +16,7 @@ var editTimeUpdate = function(crawlId, edits) {
     });
 }
 
-var updateRSVP = function() {
 
-// render template
-
-
-// hook up event listeners
-
-};
 
 var showCrawl = function(crawlId) {
 
@@ -38,7 +31,7 @@ var showCrawl = function(crawlId) {
       // template the crawl show page
         var showCrawlTemplate = _.template($('#showTemplate').html());
 
-        var $showHTML = $(showCrawlTemplate({crawl: crawl, current: $currentUser, users: users}));
+        var $showHTML = $(showCrawlTemplate({crawl: crawl, current: $currentUser, users: users, map: map}));
 
         crawl.locations.forEach(function (e) {
           addresses.push(e.address);
@@ -51,8 +44,6 @@ var showCrawl = function(crawlId) {
 
           $('#rsvp').on('click', function(){
             map = null;
-            localStorage.clear();
-            debugger;
             addRsvp(crawlId, $currentUser);
             // $('#crawl-members').append("<img class='crawl-member-thumbs' src='<%= users[i].prof_picture %> height='100' width='86.5'>");
           });
@@ -134,7 +125,7 @@ $(document).ready(function () {
 // function makes ajax call to acquire lat, lng by addresses, then place markers for all addresses, then extend map bound to include all markers
 function initMap() {
     //Marker labeling implmentation
-
+  window.localStorage.clear();
   var labels = '123456789';
   var labelIndex = 0;
 
