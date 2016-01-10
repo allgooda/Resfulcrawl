@@ -28,16 +28,16 @@ module.exports = function(app, passport) {
   // welcome/root path
   router.get('/', welcomeController.index);
 
-  router.get('/users/:id', usersController.show);
+
+  router.get('/users/', usersController.index);
   // crawls resources
   router.get('/crawls',     crawlsController.index);
   router.get('/crawls/:id', crawlsController.show);
-  // router.put('/crawls/:id', crawlsController.update);
-  router.post('/crawls', crawlsController.create);
+  router.put('/crawls/:id', crawlsController.update);
   router.get('/crawls/search/:name', crawlsController.search);
   router.delete('/crawls/:id', crawlsController.destroy);
-  router.put('/crawls/:id',    crawlsController.update);
-
+  router.post('/crawls/:id',    crawlsController.rsvpCrawl);
+  router.post('/crawls', crawlsController.create);
 
   // yelp api implmentation
   router.get('/venues', isAuthenticated, yelpController.index);

@@ -46,14 +46,14 @@
           </div>
       </div>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMQPMJeW4oeP0r22mFVGvq-BnAaGqXvoU&signed_in=true&callback=initMap"></script>
-
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMQPMJeW4oeP0r22mFVGvq-BnAaGqXvoU&signed_in=true&callback=initMap"></script>
+</script>
 
 <$ } else { $>
 
 
 <script type="text/template" id="showTemplate">
-
+<% var count = 0; %>
   <%= console.log(current) %>
 
       <div class="container show-upper-half">
@@ -103,22 +103,39 @@
               <div class="rsvp-delete-group">
                 <% if(current == crawl.creator) { %>
                   <button type="submit" class="btn btn-danger btn-md delete-button">Delete</button>
-                <% } else { %>
-                  <button id="rsvp" type="submit" class="btn btn-warning btn-md rsvp-button">RSVP</button>
+                <% } else  { %>
+                  <% crawl.members.forEach(function(elem) { %>
+                      <% if (elem == current) { %>
+                        <% count ++; %>
+                      <% } %>
+                  <% }); %>
                 <% } %>
+
+                <% if (count == 0) { %>
+                  <button id="rsvp" type="submit" class="btn btn-warning btn-md rsvp-button">RSVP</button>
+                  <% count = 0; %>
+                <% } %>
+
               </div>
               <!-- RSVP members implmentation  -->
                 <div id= "crawl-members">
                   <div>
                     <h3 class="rsvp-headline">RSVPed: <%= crawl.members.length %></h3>
                   </div>
+
                   <div>
-                    <% if (crawl.members) { %>
-                      <% crawl.members.forEach(function (e) { %>
-                    <img class="crawl-member-thumbs" src="<%= e %>" height="100" width="86.5">
-                      <% }) %>
-                    <% } %>
+                    <% crawl.members.forEach(function(elem) { %>
+                      <% for (i = 0; i < users.length; i ++) { %>
+                        <% if (elem == users[i]._id) { %>
+                          <%= console.log('match!!') %>
+                          <img class="crawl-member-thumbs" src="<%= users[i].prof_picture %>" height="100" width="86.5">
+                        <% } %>
+                      <% } %>
+                    <% }); %>
                   </div>
+
+
+
                     <br>
                     <br>
                 </div>
